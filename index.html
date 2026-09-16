@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   PAGE 1
+========================= */
+
+.page1{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.75), transparent 18%),
+        radial-gradient(circle at 85% 75%, rgba(255,90,160,.35), transparent 25%),
+        linear-gradient(135deg,#ffd9e9,#fff2f8,#ffc1dc);
+}
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(45px);
+    opacity:.5;
+    animation:orb 7s ease-in-out infinite alternate;
+}
+
+.g1{
+    width:180px;
+    height:180px;
+    background:#ff73ad;
+    left:-50px;
+    top:-30px;
+}
+
+.g2{
+    width:220px;
+    height:220px;
+    background:#ffb8d8;
+    right:-70px;
+    bottom:-60px;
+    animation-delay:2s;
+}
+
+@keyframes orb{
+    from{transform:translate(0,0) scale(1);}
+    to{transform:translate(35px,-25px) scale(1.15);}
+}
+
+.card{
+    width:min(390px,90vw);
+    min-height:390px;
+    padding:38px 25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    z-index:5;
+    border:1px solid rgba(255,255,255,.8);
+    border-radius:30px;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(15px);
+    box-shadow:0 25px 70px rgba(180,30,100,.22);
+    animation:cardIn 1.1s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes cardIn{
+    0%{
+        opacity:0;
+        transform:translateY(40px) scale(.75) rotate(-3deg);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1) rotate(0);
+    }
+}
+
+.teddy{
+    font-size:82px;
+    line-height:1;
+    margin-bottom:22px;
+    animation:teddyFloat 2.2s ease-in-out infinite;
+}
+
+@keyframes teddyFloat{
+    0%,100%{transform:translateY(0) rotate(0);}
+    50%{transform:translateY(-12px) rotate(3deg);}
+}
+
+.question{
+    color:#f31667;
+    font-size:29px;
+    font-weight:900;
+    margin-bottom:30px;
+    animation:
+        questionIn 1.2s .25s both,
+        textGlow 2s 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes questionIn{
+    0%{
+        opacity:0;
+        transform:translateY(-25px) scale(.7);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes textGlow{
+    from{text-shadow:0 0 5px rgba(255,30,110,.25);}
+    to{text-shadow:0 0 8px rgba(255,30,110,.5),0 0 22px rgba(255,30,110,.3);}
+}
+
+.buttons{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    min-height:60px;
+    position:relative;
+}
+
+button{
+    border:0;
+    border-radius:999px;
+    padding:14px 28px;
+    font-size:17px;
+    font-weight:800;
+    cursor:pointer;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.yes{
+    color:#fff;
+    background:linear-gradient(135deg,#ff0b62,#ff4d93);
+    box-shadow:0 9px 25px rgba(255,20,100,.35);
+    animation:
+        buttonIn .9s .55s both,
+        yesPulse 1.8s 1.5s ease-in-out infinite;
+}
+
+@keyframes buttonIn{
+    from{opacity:0;transform:scale(0);}
+    to{opacity:1;transform:scale(1);}
+}
+
+@keyframes yesPulse{
+    0%,100%{box-shadow:0 9px 25px rgba(255,20,100,.35); transform:scale(1);}
+    50%{box-shadow:0 9px 35px rgba(255,20,100,.65); transform:scale(1.07);}
+}
+
+.no{
+    color:#555;
+    background:#f0f0f3;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    animation:buttonIn .9s .7s both;
+    transform-origin:center;
+    transition:
+        transform .55s cubic-bezier(.2,.9,.2,1),
+        opacity .55s ease;
+}
+
+/* This class is added on every NO click */
+.no-shake{
+    animation:noDance .65s ease-in-out !important;
+}
+
+@keyframes noDance{
+    0%{transform:translate(0,0) rotate(0) scale(var(--no-scale,1));}
+    12%{transform:translate(-22px,-7px) rotate(-9deg) scale(var(--no-scale,1));}
+    25%{transform:translate(24px,8px) rotate(9deg) scale(var(--no-scale,1));}
+    38%{transform:translate(-20px,5px) rotate(-7deg) scale(var(--no-scale,1));}
+    51%{transform:translate(18px,-5px) rotate(7deg) scale(var(--no-scale,1));}
+    65%{transform:translate(-11px,3px) rotate(-4deg) scale(var(--no-scale,1));}
+    80%{transform:translate(8px,-2px) rotate(3deg) scale(var(--no-scale,1));}
+    100%{transform:translate(0,0) rotate(0) scale(var(--no-scale,1));}
+}
+
+.hint{
+    margin-top:25px;
+    color:#a3476d;
+    font-size:13px;
+    opacity:.8;
+    animation:hintIn 1.5s 1s both;
+}
+
+@keyframes hintIn{
+    from{opacity:0;transform:translateY(12px);}
+    to{opacity:.8;transform:translateY(0);}
+}
+
+/* floating hearts page 1 */
+.bg-heart{
+    position:absolute;
+    bottom:-50px;
+    font-size:22px;
+    opacity:0;
+    animation:floatHeart 6s linear infinite;
+}
+
+@keyframes floatHeart{
+    0%{transform:translateY(0) rotate(0) scale(.6);opacity:0;}
+    15%{opacity:.7;}
+    85%{opacity:.7;}
+    100%{transform:translateY(-115vh) rotate(360deg) scale(1.2);opacity:0;}
+}
+
+/* =========================
+   PAGE 2
+========================= */
+
+.page2{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    text-align:center;
+    background:
+        radial-gradient(circle at 50% 35%, #fff 0%, #ffd9e9 30%, #ff9fc5 65%, #ff5f9d 100%);
+}
+
+.page2.show{
+    display:flex;
+    animation:page2In 1.2s ease both;
+}
+
+@keyframes page2In{
+    from{opacity:0;transform:scale(1.15);}
+    to{opacity:1;transform:scale(1);}
+}
+
+.final-content{
+    position:relative;
+    z-index:10;
+    padding:30px;
+}
+
+.final-teddy{
+    font-size:125px;
+    line-height:1;
+    margin-bottom:15px;
+    animation:
+        finalTeddyIn 1.3s ease both,
+        finalTeddyBounce 2.2s 1.3s ease-in-out infinite;
+}
+
+@keyframes finalTeddyIn{
+    0%{opacity:0;transform:scale(0) rotate(-25deg);}
+    70%{opacity:1;transform:scale(1.15) rotate(6deg);}
+    100%{transform:scale(1) rotate(0);}
+}
+
+@keyframes finalTeddyBounce{
+    0%,100%{transform:translateY(0) rotate(0);}
+    50%{transform:translateY(-15px) rotate(3deg);}
+}
+
+.love-title{
+    font-size:clamp(42px,10vw,76px);
+    font-weight:1000;
+    letter-spacing:2px;
+    color:#ff0d67;
+    text-shadow:
+        0 3px 0 #fff,
+        0 0 10px #fff,
+        0 0 25px #ff5c9c,
+        0 0 50px rgba(255,0,100,.55);
+    animation:
+        loveIn 1.4s .25s both,
+        loveBeat 2s 1.8s ease-in-out infinite;
+}
+
+@keyframes loveIn{
+    0%{opacity:0;transform:scale(.2) rotate(-8deg);}
+    65%{opacity:1;transform:scale(1.13) rotate(2deg);}
+    100%{transform:scale(1) rotate(0);}
+}
+
+@keyframes loveBeat{
+    0%,100%{transform:scale(1);}
+    8%{transform:scale(1.07);}
+    16%{transform:scale(1);}
+    25%{transform:scale(1.07);}
+    34%{transform:scale(1);}
+}
+
+.message{
+    margin-top:18px;
+    color:#9b1750;
+    font-size:20px;
+    font-weight:700;
+    animation:messageIn 1.5s .9s both;
+}
+
+@keyframes messageIn{
+    from{opacity:0;transform:translateY(25px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+.decor{
+    position:absolute;
+    z-index:2;
+    pointer-events:none;
+}
+
+.flower{
+    position:absolute;
+    bottom:-80px;
+    font-size:45px;
+    animation:flowerRise 7s linear infinite;
+}
+
+@keyframes flowerRise{
+    0%{
+        transform:translateY(0) rotate(0) scale(.6);
+        opacity:0;
+    }
+    12%{opacity:1;}
+    85%{opacity:1;}
+    100%{
+        transform:translateY(-120vh) rotate(360deg) scale(1.2);
+        opacity:0;
+    }
+}
+
+.fheart{
+    position:absolute;
+    bottom:-60px;
+    font-size:30px;
+    animation:finalHeart 5s linear infinite;
+}
+
+@keyframes finalHeart{
+    0%{
+        transform:translateY(0) scale(.5) rotate(0);
+        opacity:0;
+    }
+    15%{opacity:1;}
+    85%{opacity:1;}
+    100%{
+        transform:translateY(-115vh) scale(1.4) rotate(180deg);
+        opacity:0;
+    }
+}
+
+.sparkle{
+    position:absolute;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 12px #fff;
+    animation:sparkle 1.8s ease-in-out infinite;
+}
+
+@keyframes sparkle{
+    0%,100%{opacity:.2;transform:scale(.5);}
+    50%{opacity:1;transform:scale(1.5);}
+}
+
+/* final decorative corners */
+.corner{
+    position:absolute;
+    font-size:65px;
+    z-index:4;
+    animation:cornerFloat 3s ease-in-out infinite;
+}
+
+.c1{left:4%;top:7%;}
+.c2{right:4%;top:7%;animation-delay:.6s;}
+.c3{left:5%;bottom:6%;animation-delay:1.2s;}
+.c4{right:5%;bottom:6%;animation-delay:1.8s;}
+
+@keyframes cornerFloat{
+    0%,100%{transform:translateY(0) rotate(-5deg);}
+    50%{transform:translateY(-12px) rotate(5deg);}
+}
+
+/* small screens */
+@media(max-width:500px){
+    .card{
+        min-height:350px;
+        padding:30px 20px;
+    }
+
+    .question{
+        font-size:25px;
+    }
+
+    .final-teddy{
+        font-size:95px;
+    }
+
+    .message{
+        font-size:17px;
+    }
+
+    .corner{
+        font-size:45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     PAGE 1
+========================= -->
+
+<section class="page1" id="page1">
+
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+
+    <!-- Background hearts -->
+    <span class="bg-heart" style="left:8%;animation-delay:0s;">❤️</span>
+    <span class="bg-heart" style="left:20%;animation-delay:2s;">💗</span>
+    <span class="bg-heart" style="left:36%;animation-delay:4s;">💕</span>
+    <span class="bg-heart" style="left:58%;animation-delay:1s;">❤️</span>
+    <span class="bg-heart" style="left:76%;animation-delay:3s;">💖</span>
+    <span class="bg-heart" style="left:91%;animation-delay:5s;">💗</span>
+
+    <div class="card" id="card">
+
+        <div class="teddy">🧸</div>
+
+        <h1 class="question">
+            Do you love me? ❤️
+        </h1>
+
+        <div class="buttons">
+
+            <button class="yes" id="yesBtn" onclick="yesClicked()">
+                Yes! ❤️
+            </button>
+
+            <button class="no" id="noBtn" onclick="noClicked()">
+                No 😢
+            </button>
+
+        </div>
+
+        <div class="hint">
+            Choose carefully... 👀💕
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================
+     PAGE 2
+========================= -->
+
+<section class="page2" id="page2">
+
+    <!-- Corner flowers -->
+    <div class="corner c1">🌸</div>
+    <div class="corner c2">🌹</div>
+    <div class="corner c3">🌷</div>
+    <div class="corner c4">🌸</div>
+
+    <!-- Floating flowers -->
+    <div class="flower" style="left:4%;animation-delay:0s;">🌸</div>
+    <div class="flower" style="left:15%;animation-delay:1.4s;">🌷</div>
+    <div class="flower" style="left:28%;animation-delay:3s;">🌹</div>
+    <div class="flower" style="left:48%;animation-delay:.8s;">🌸</div>
+    <div class="flower" style="left:68%;animation-delay:2.3s;">🌷</div>
+    <div class="flower" style="left:82%;animation-delay:1s;">🌹</div>
+    <div class="flower" style="left:94%;animation-delay:3.5s;">🌸</div>
+
+    <!-- Floating hearts -->
+    <div class="fheart" style="left:10%;animation-delay:.5s;">❤️</div>
+    <div class="fheart" style="left:25%;animation-delay:2s;">💗</div>
+    <div class="fheart" style="left:42%;animation-delay:3.5s;">💕</div>
+    <div class="fheart" style="left:62%;animation-delay:1.2s;">❤️</div>
+    <div class="fheart" style="left:78%;animation-delay:2.7s;">💖</div>
+    <div class="fheart" style="left:90%;animation-delay:4s;">💕</div>
+
+    <!-- Sparkles -->
+    <span class="sparkle" style="left:12%;top:22%;animation-delay:.2s;"></span>
+    <span class="sparkle" style="left:24%;top:70%;animation-delay:1s;"></span>
+    <span class="sparkle" style="left:37%;top:15%;animation-delay:1.4s;"></span>
+    <span class="sparkle" style="left:70%;top:25%;animation-delay:.6s;"></span>
+    <span class="sparkle" style="left:85%;top:65%;animation-delay:1.8s;"></span>
+    <span class="sparkle" style="left:56%;top:78%;animation-delay:.9s;"></span>
+
+    <div class="final-content">
+
+        <div class="final-teddy">
+            🧸
+        </div>
+
+        <div class="love-title">
+            I LOVE YOU ❤️
+        </div>
+
+        <div class="message">
+            You are my favorite person 🌸💕
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   NO BUTTON
+========================= */
+
+let noScale = 1;
+let noClicks = 0;
+let noX = 0;
+let noY = 0;
+
+function noClicked(){
+
+    const noBtn = document.getElementById("noBtn");
+
+    noClicks++;
+
+    /* Remove old animation so it can restart */
+    noBtn.classList.remove("no-shake");
+    void noBtn.offsetWidth;
+    noBtn.classList.add("no-shake");
+
+    /*
+       Every click:
+       - button moves randomly
+       - button becomes smaller
+    */
+
+    setTimeout(() => {
+
+        noScale -= 0.16;
+
+        if(noScale <= 0.10){
+
+            /* Final hide: moves under YES area */
+            noScale = 0.03;
+
+            noBtn.style.setProperty("--no-scale", noScale);
+            noBtn.style.transform =
+                "translate(-5px, 5px) scale(0.03)";
+            noBtn.style.opacity = "0";
+            noBtn.style.pointerEvents = "none";
+
+            return;
+        }
+
+        /* Random little movement */
+        const moveX = Math.floor(Math.random() * 45) - 22;
+        const moveY = Math.floor(Math.random() * 25) - 12;
+
+        noBtn.style.setProperty("--no-scale", noScale);
+
+        noBtn.style.transform =
+            `translate(${moveX}px, ${moveY}px) scale(${noScale})`;
+
+        noBtn.style.opacity = Math.max(noScale, .25);
+
+    }, 650);
+}
+
+
+/* =========================
+   YES BUTTON
+========================= */
+
+function yesClicked(){
+
+    const card = document.getElementById("card");
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+
+    /* Beautiful exit animation */
+    card.style.transition =
+        "1s cubic-bezier(.2,.8,.2,1)";
+
+    card.style.transform =
+        "scale(0) rotate(12deg) translateY(30px)";
+
+    card.style.opacity = "0";
+
+    page1.style.transition = "1s ease";
+    page1.style.opacity = "0";
+
+    setTimeout(() => {
+
+        page1.style.display = "none";
+
+        page2.classList.add("show");
+
+    }, 900);
+}
+
+</script>
+
+</body>
+</html>
